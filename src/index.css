@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply antialiased text-gray-800;
+  }
+  
+  /* Исправляем: используем правильный формат цвета */
+  ::selection {
+    @apply bg-blue-100 text-gray-900; /* Временно используем стандартный синий */
+  }
+}
+
+@layer components {
+  /* Кнопки */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-xl 
+           font-semibold hover:shadow-xl hover:-translate-y-0.5 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-gray-800 border-2 border-blue-300 rounded-xl 
+           font-semibold hover:border-blue-500 hover:bg-blue-50 transition-all;
+  }
+  
+  /* Карточки - упрощаем до стандартных классов */
+  .card-blue {
+    @apply border-2 border-blue-200 hover:border-blue-500 bg-gradient-to-b from-white to-blue-50;
+  }
+  
+  .card-green {
+    @apply border-2 border-green-200 hover:border-green-500 bg-gradient-to-b from-white to-green-50;
+  }
+  
+  .card-orange {
+    @apply border-2 border-orange-200 hover:border-orange-500 bg-gradient-to-b from-white to-orange-50;
+  }
+}
+
+/* Анимации */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
