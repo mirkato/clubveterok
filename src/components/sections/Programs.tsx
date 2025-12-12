@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Programs: React.FC = () => {
   const programs = [
@@ -138,9 +139,12 @@ const Programs: React.FC = () => {
         </div>
         
         <div className="text-center mt-12">
-          <button className="px-6 py-3 border-2 border-brand-blue text-brand-blue rounded-xl hover:bg-brand-blue/5 font-medium transition-all">
+          <Link 
+            to="/programs"
+            className="inline-flex items-center px-6 py-3 border-2 border-brand-blue text-brand-blue rounded-xl hover:bg-brand-blue/5 font-medium transition-all"
+          >
             Все активности клуба →
-          </button>
+          </Link>
         </div>
       </div>
     </section>

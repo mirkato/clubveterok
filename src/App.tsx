@@ -1,30 +1,48 @@
+// src/App.tsx
 import React from 'react';
-import Header from './components/layout/Header';
-import Hero from './components/sections/Hero';
-import Benefits from './components/sections/Benefits';
-import Programs from './components/sections/Programs';
-import Audience from './components/sections/Audience';
-import MapSection from './components/sections/MapSection'; // <-- Добавляем импорт
-import Testimonials from './components/sections/Testimonials';
-import CTASection from './components/sections/CTASection';
-import Footer from './components/layout/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Импорт страниц
+import HomePage from './pages/HomePage';
+import ProgramsPage from './pages/ProgramsPage';
+import SchedulePage from './pages/SchedulePage';
+import PricesPage from './pages/PricesPage';
+import EventsPage from './pages/EventsPage';
+import TeachersPage from './pages/TeachersPage';
+import AboutPage from './pages/AboutPage';
+import ContactsPage from './pages/ContactsPage';
+import BlogPage from './pages/BlogPage';
+import AccountPage from './pages/AccountPage';
+import TryFreePage from './pages/TryFreePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero />
-        <Benefits />
-        <Programs />
-        <Audience />
-        <MapSection /> {/* <-- Добавляем секцию карты здесь */}
-        {/* Если у вас есть Testimonials и CTASection, добавьте их после */}
-        <Testimonials />
-        <CTASection /> 
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        {/* Основные страницы */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/prices" element={<PricesPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/teachers" element={<TeachersPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+        
+        {/* Дополнительные страницы */}
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/try-free" element={<TryFreePage />} />
+        
+        {/* Специальные страницы */}
+        <Route path="/new-residents" element={<TryFreePage />} />
+        <Route path="/doubts" element={<TryFreePage />} />
+        
+        {/* Страница 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Router>
   );
 };
 
