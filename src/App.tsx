@@ -14,6 +14,9 @@ import ContactsPage from './pages/ContactsPage';
 import BlogPage from './pages/BlogPage';
 import AccountPage from './pages/AccountPage';
 import TryFreePage from './pages/TryFreePage';
+import CybertonicPage from './pages/CybertonicPage';
+import ProgramCategoryPage from './pages/ProgramCategoryPage';
+import ProgramDetailPage from './pages/ProgramDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const App: React.FC = () => {
@@ -23,6 +26,8 @@ const App: React.FC = () => {
         {/* Основные страницы */}
         <Route path="/" element={<HomePage />} />
         <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/programs/:categoryId" element={<ProgramCategoryPage />} />
+        <Route path="/programs/:categoryId/:programId" element={<ProgramDetailPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/prices" element={<PricesPage />} />
         <Route path="/events" element={<EventsPage />} />

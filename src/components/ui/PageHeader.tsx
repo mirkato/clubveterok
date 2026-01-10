@@ -5,7 +5,7 @@ interface PageHeaderProps {
   title: string;
   subtitle?: string;
   description?: string;
-  bgColor?: 'brand-blue' | 'brand-green' | 'brand-orange' | 'brand-lightgreen' | 'gray' | 'white';
+  bgColor?: 'brand-blue' | 'brand-green' | 'brand-orange' | 'brand-lightgreen' | 'gray' | 'white' | string;
   align?: 'left' | 'center';
   className?: string;
 }
@@ -19,13 +19,18 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   className = ''
 }) => {
   // Определяем классы для фона
-  const bgColorClasses = {
+  const bgColorClasses: Record<string, string> = {
     'brand-blue': 'bg-gradient-to-r from-brand-blue/90 to-brand-blue',
     'brand-green': 'bg-gradient-to-r from-brand-green/90 to-brand-green',
     'brand-orange': 'bg-gradient-to-r from-brand-orange/90 to-brand-orange',
     'brand-lightgreen': 'bg-gradient-to-r from-brand-lightgreen/90 to-brand-lightgreen',
     'gray': 'bg-gradient-to-r from-gray-100 to-gray-200',
     'white': 'bg-white'
+  };
+
+  // Функция для получения класса фона
+  const getBgColorClass = (color: string) => {
+    return bgColorClasses[color] || `bg-gradient-to-r from-${color}/90 to-${color}`;
   };
 
   // Определяем выравнивание текста
@@ -35,7 +40,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   };
 
   return (
-    <div className={`${bgColorClasses[bgColor]} py-12 md:py-16 lg:py-20 ${className}`}>
+    <div className={`${getBgColorClass(bgColor)} py-12 md:py-16 lg:py-20 ${className}`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className={`max-w-4xl mx-auto ${alignClasses[align]}`}>
           {subtitle && (

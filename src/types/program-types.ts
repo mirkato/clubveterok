@@ -10,6 +10,8 @@ export interface Program {
   mentor: string;
   description: string;
   features: string[];
+  detailedDescription?: string;
+  outcomes?: string[];
 }
 
 export interface ProgramCategory {

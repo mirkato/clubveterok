@@ -9,7 +9,6 @@ const Header: React.FC = () => {
   const navItems = [
     { label: 'Активности', href: '/programs' },
     { label: 'Расписание', href: '/schedule' },
-    { label: 'Стоимость', href: '/prices' },
     { label: 'Мероприятия', href: '/events' },
     { label: 'Наставники', href: '/teachers' },
     { label: 'О клубе', href: '/about' },

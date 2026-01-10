@@ -2,6 +2,7 @@
 import React from 'react';
 import { Calendar, Users, CreditCard, User } from 'lucide-react';
 import Button from '../../ui/Button';
+import { programCategories } from '../../../data/programs-data';
 
 interface ProgramCardProps {
   title: string;
@@ -12,6 +13,7 @@ interface ProgramCardProps {
   description: string;
   features: string[];
   color?: string;
+  showDetailsButton?: boolean; // Новый пропс для управления отображением кнопки
 }
 
 const ProgramCard: React.FC<ProgramCardProps> = ({
@@ -22,7 +24,8 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
   mentor,
   description,
   features = [], // По умолчанию пустой массив
-  color = 'brand-blue'
+  color = 'brand-blue',
+  showDetailsButton = true // По умолчанию показываем кнопку
 }) => {
   const colorClasses = {
     'brand-blue': 'border-blue-200 hover:border-blue-300',
@@ -73,15 +76,35 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
       
       <div className="mt-auto space-y-3">
         {/* Убираем fullWidth, используем w-full в className */}
-        <Button 
-          variant="primary" 
-          className="w-full justify-center"
-          onClick={() => window.location.href = `/programs/${title.toLowerCase().replace(/\s+/g, '-')}`}
-        >
-          Узнать подробнее
-        </Button>
-        <Button 
-          variant="outline" 
+        {showDetailsButton && (
+          <Button
+            variant="primary"
+            className="w-full justify-center"
+            onClick={() => {
+              // Find the program category and ID
+              const categories = programCategories;
+              let categoryId = '';
+              let programId = '';
+              
+              for (const category of categories) {
+                const program = category.programs.find((p: any) => p.title === title);
+                if (program) {
+                  categoryId = category.id;
+                  programId = program.id;
+                  break;
+                }
+              }
+              
+              if (categoryId && programId) {
+                window.location.href = `/programs/${categoryId}/${programId}`;
+              }
+            }}
+          >
+            Узнать подробнее
+          </Button>
+        )}
+        <Button
+          variant="outline"
           className="w-full justify-center"
           onClick={() => window.location.href = `/try-free?program=${title}`}
         >

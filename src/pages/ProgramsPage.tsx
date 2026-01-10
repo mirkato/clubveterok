@@ -3,7 +3,7 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
-import ProgramCategory from '../components/sections/programs/ProgramCard';
+import CategoryCard from '../components/sections/programs/CategoryCard';
 import { programCategories } from '../data/programs-data'; // Массив данных
 
 const ProgramsPage: React.FC = () => {
@@ -21,19 +21,15 @@ const ProgramsPage: React.FC = () => {
             Направления по интересам
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            В клубе «Ветерок» мы создали мастерские, где дети и подростки могут пробовать себя в разных активностях, 
+            В клубе «Ветерок» мы создали мастерские, где дети и подростки могут пробовать себя в разных активностях,
             находить увлечения и развиваться через игру.
           </p>
         </div>
-        <div className="space-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {programCategories.map((category) => (
-            <ProgramCategory
+            <CategoryCard
               key={category.id}
-              title={category.title}
-              icon={category.icon}
-              description={category.description}
-              programs={category.programs}
-              color={category.color}
+              category={category}
             />
           ))}
         </div>
@@ -44,11 +40,11 @@ const ProgramsPage: React.FC = () => {
             Запишитесь на первую встречу — она бесплатная!
           </h3>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            Приходите, познакомьтесь с наставниками и пространством, чтобы понять, 
+            Приходите, познакомьтесь с наставниками и пространством, чтобы понять,
             какая активность подходит именно вашему ребёнку.
           </p>
-          <a 
-            href="/try-free" 
+          <a
+            href="/try-free"
             className="inline-flex items-center bg-white text-brand-blue hover:bg-gray-100 font-bold px-8 py-3 rounded-lg text-lg transition-colors"
           >
             Записаться на пробную встречу
