@@ -4,7 +4,7 @@ import React from 'react';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import CategoryCard from '../components/sections/programs/CategoryCard';
-import { programCategories } from '../data/programs-data'; // Массив данных
+import { programCategories } from '../data/programs-datas'; // Массив данных
 
 const ProgramsPage: React.FC = () => {
   return (

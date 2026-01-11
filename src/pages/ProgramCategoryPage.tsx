@@ -5,7 +5,7 @@ import Layout from '../components/layout/Layout';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import ProgramCategory from '../components/sections/programs/ProgramCategory';
-import { programCategories } from '../data/programs-data';
+import { programCategories } from '../data/programs-datas';
 
 const ProgramCategoryPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();

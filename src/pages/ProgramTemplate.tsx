@@ -3,10 +3,10 @@ import Layout from '../components/layout/Layout';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import React from 'react';
-import { ExtendedProgram } from '../data/programs-data';
+import type { Program } from '../data/programs-datas';
 
 interface ProgramTemplateProps {
-  program: ExtendedProgram;
+  program: Program;
 }
 
 const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
@@ -53,7 +53,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              {pageData.conceptPoints.map((point, index) => (
+              {pageData.conceptPoints.map((point: { title: string; description: string }, index: number) => (
                 <div key={index} className="bg-white/10 p-6 rounded-xl">
                   <h4 className="text-xl font-bold mb-3">{point.title}</h4>
                   <p>{point.description}</p>
@@ -74,8 +74,8 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
             </p>
             
             <div className="space-y-12">
-              {pageData.platforms.map((platform, index) => (
-                <div 
+              {pageData.platforms.map((platform: { id: string; title: string; borderColor: string; items: Array<{ description: string }> }, index: number) => (
+                <div
                   key={platform.id}
                   className={`border-l-4 border-${platform.borderColor} pl-6 py-2`}
                 >
@@ -83,7 +83,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
                     {platform.title}
                   </h4>
                   <ul className="space-y-3">
-                    {platform.items.map((item, itemIndex) => (
+                    {platform.items.map((item: { description: string }, itemIndex: number) => (
                       <li key={itemIndex} className="flex items-start">
                         <span className={`text-${platform.borderColor} mr-2`}>•</span>
                         <span>{item.description}</span>
@@ -112,7 +112,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
                 
                 <h4 className="text-xl font-bold text-gray-800 mb-4">СТРУКТУРА</h4>
                 <ul className="space-y-2">
-                  {pageData.howItWorks.structure.map((item, index) => (
+                  {pageData.howItWorks.structure.map((item: { title: string; description: string }, index: number) => (
                     <li key={index} className="flex items-start">
                       <span className={`text-${pageData.heroBgColor} mr-2`}>•</span>
                       <span><strong>{item.title}</strong> {item.description}</span>
@@ -124,7 +124,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
               <div>
                 <h4 className="text-xl font-bold text-gray-800 mb-4">ОСОБЕННОСТИ</h4>
                 <ul className="space-y-2">
-                  {pageData.howItWorks.features.map((item, index) => (
+                  {pageData.howItWorks.features.map((item: { description: string; details?: string }, index: number) => (
                     <li key={index} className="flex items-start">
                       <span className="text-brand-green mr-2">•</span>
                       <span><strong>{item.description}</strong> {item.details}</span>
@@ -144,7 +144,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {pageData.whyUsPoints.map((point, index) => (
+              {pageData.whyUsPoints.map((point: { title: string; description: string }, index: number) => (
                 <div key={index} className="border border-gray-200 rounded-xl p-6">
                   <h4 className="text-xl font-bold text-gray-800 mb-3">
                     {point.title}
@@ -171,7 +171,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
             <div className="bg-white/10 p-6 rounded-xl mb-6 text-left max-w-2xl mx-auto">
               <h4 className="text-xl font-bold mb-4">{pageData.ctaDemo.title}</h4>
               <ul className="space-y-2">
-                {pageData.ctaDemo.items.map((item, index) => (
+                {pageData.ctaDemo.items.map((item: string, index: number) => (
                   <li key={index} className="flex items-start">
                     <span className="text-brand-orange mr-2">✓</span>
                     <span>{item}</span>
@@ -203,7 +203,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
             </h3>
             
             <div className="space-y-6">
-              {pageData.faqs.map((faq, index) => (
+              {pageData.faqs.map((faq: { question: string; answer: string }, index: number) => (
                 <div key={index}>
                   <h4 className="text-lg font-bold text-gray-800 mb-2">
                     {faq.question}

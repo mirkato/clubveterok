@@ -12,6 +12,7 @@ const Header: React.FC = () => {
     { label: 'Мероприятия', href: '/events' },
     { label: 'Наставники', href: '/teachers' },
     { label: 'О клубе', href: '/about' },
+    { label: 'Контакты', href: '/contacts' },
   ];
 
   const handleNavClick = () => {

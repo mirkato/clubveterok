@@ -29,7 +29,7 @@ const ProgramDetailPage: React.FC = () => {
   }
 
   // Проверяем, есть ли расширенные данные для страницы
-  const extendedProgram: any = program;
+  const extendedProgram = program;
   const pageData = extendedProgram.pageData;
 
   // Если есть расширенные данные, используем их

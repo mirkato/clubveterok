@@ -2,7 +2,7 @@
 import React from 'react';
 import { Calendar, Users, CreditCard, User } from 'lucide-react';
 import Button from '../../ui/Button';
-import { programCategories } from '../../../data/programs-data';
+import { programCategories } from '../../../data/programs-datas';
 
 interface ProgramCardProps {
   title: string;
