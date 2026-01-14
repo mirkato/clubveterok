@@ -45,6 +45,7 @@ const getEmojiForProgram = (programId: string) => {
 const Programs: React.FC = () => {
   // Преобразуем данные из нового формата в формат, используемый в компоненте
   const programs = topPrograms.map((program: Program) => ({
+    id: program.id,
     icon: getEmojiForProgram(program.id),
     title: program.title,
     age: program.ageGroup,
@@ -129,9 +130,12 @@ const Programs: React.FC = () => {
                 <div className="text-lg font-bold text-gray-900">
                   {program.price}
                 </div>
-                <button className={`px-4 py-2 text-white rounded-lg font-medium hover:shadow-md transition-all ${buttonColorClasses[program.color as keyof typeof buttonColorClasses]}`}>
-                  Попробовать
-                </button>
+                <Link
+                  to={`/programs/${program.id}`}
+                  className={`px-4 py-2 text-white rounded-lg font-medium hover:shadow-md transition-all ${buttonColorClasses[program.color as keyof typeof buttonColorClasses]}`}
+                >
+                  Подробнее
+                </Link>
               </div>
             </div>
           ))}
