@@ -108,7 +108,7 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
           className="w-full justify-center"
           onClick={() => window.location.href = `/try-free?program=${title}`}
         >
-          Записаться на пробную
+          Записаться на пробное занятие
         </Button>
       </div>
     </div>
