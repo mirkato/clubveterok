@@ -1728,6 +1728,6 @@ export const getProgramsByCategory = (categoryId: string): Program[] => {
 // Для главной страницы - ТОП активностей
 export const topPrograms = programCategories
   .flatMap(cat => cat.programs)
-  .filter(program => ['scratch', 'hip-hop', 'school-prep', 'clean-writing', 'drawing', 'fashion-theater']
+  .filter(program => ['school-prep', 'art-atelier', 'cybertonic', 'logoped', 'fashion-theater', 'karate-kids']
     .includes(program.id))
   .slice(0, 6);
