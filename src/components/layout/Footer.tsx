@@ -2,6 +2,8 @@ import React from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import Container from './Container';
 import Button from '../ui/Button';
+import { topPrograms, programCategories } from '../../data/programs-datas';
+import type { Program } from '../../types/program-types';
 
 const Footer: React.FC = () => {
   return (
@@ -50,23 +52,24 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-bold mb-6">Направления</h3>
             <ul className="space-y-3">
-              {[
-                'Scratch-программирование',
-                'Хип-хоп',
-                'Рисование',
-                'Подготовка к школе',
-                'VR/AR Lab',
-                'Все направления →'
-              ].map((item, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
+              {topPrograms.slice(0, 5).map((program: Program) => (
+                <li key={program.id}>
+                  <a
+                    href={`/programs/${programCategories.find(cat => cat.programs.includes(program))?.id || 'default'}/${program.id}`}
                     className="text-gray-400 hover:text-white transition-colors"
                   >
-                    {item}
+                    {program.title}
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/programs"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Все направления →
+                </a>
+              </li>
             </ul>
           </div>
           

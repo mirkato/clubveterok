@@ -23,6 +23,7 @@ const ContactsPage: React.FC = () => {
                   <div>
                     <h3 className="font-bold text-gray-800 mb-2">Адрес</h3>
                     <p className="text-gray-600">
+                      Тюменская обл., Тюменский р-н <br />
                       село Каменка, ул. Пионовая, д. 15<br />
                       (КП «Сказка»)
                     </p>
@@ -70,8 +71,7 @@ const ContactsPage: React.FC = () => {
             </div>         
             <div className="mt-8 p-4 bg-brand-green/10 rounded-lg">
               <p className="text-gray-700">
-                <strong>Приходите познакомиться!</strong> Первая встреча — бесплатно. 
-                Покажем клуб, расскажем о активностях и поможем выбрать направление для вашего ребёнка.
+                <strong>Приходите познакомиться!</strong> Покажем клуб, расскажем о активностях и поможем выбрать направление для вашего ребёнка.
               </p>
             </div>
           </div>

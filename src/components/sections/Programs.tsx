@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { topPrograms } from '../../data/programs-datas';
+import { topPrograms, programCategories } from '../../data/programs-datas';
 import type { Program } from '../../types/program-types';
 
 // Функция для преобразования heroBgColor в цветовую схему
@@ -44,20 +44,26 @@ const getEmojiForProgram = (programId: string) => {
 
 const Programs: React.FC = () => {
   // Преобразуем данные из нового формата в формат, используемый в компоненте
-  const programs = topPrograms.map((program: Program) => ({
-    id: program.id,
-    icon: getEmojiForProgram(program.id),
-    title: program.title,
-    age: program.ageGroup,
-    description: program.description,
-    details: [
-      `📅 ${program.schedule}`,
-      `👤 ${program.mentor}`,
-      `💰 ${program.price} руб/мес`
-    ],
-    price: `${program.price} руб/мес`,
-    color: program.pageData ? getColorScheme(program.pageData.heroBgColor) : 'blue'
-  }));
+  const programs = topPrograms.map((program: Program) => {
+    // Найти категорию для программы
+    const category = programCategories.find(cat => cat.programs.some(p => p.id === program.id));
+    
+    return {
+      id: program.id,
+      categoryId: category?.id || 'development', // По умолчанию 'development' если категория не найдена
+      icon: getEmojiForProgram(program.id),
+      title: program.title,
+      age: program.ageGroup,
+      description: program.description,
+      details: [
+        `📅 ${program.schedule}`,
+        `👤 ${program.mentor}`,
+        `💰 ${program.price} руб/мес`
+      ],
+      price: `${program.price} руб/мес`,
+      color: program.pageData ? getColorScheme(program.pageData.heroBgColor) : 'blue'
+    };
+  });
 
   const colorClasses = {
     blue: 'border-brand-blue/30 hover:border-brand-blue bg-gradient-to-b from-white to-brand-blue/5',
@@ -131,7 +137,7 @@ const Programs: React.FC = () => {
                   {program.price}
                 </div>
                 <Link
-                  to={`/programs/${program.id}`}
+                  to={`/programs/${program.categoryId}/${program.id}`}
                   className={`px-4 py-2 text-white rounded-lg font-medium hover:shadow-md transition-all ${buttonColorClasses[program.color as keyof typeof buttonColorClasses]}`}
                 >
                   Подробнее

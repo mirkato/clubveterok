@@ -1538,7 +1538,7 @@ export const programCategories: ProgramCategory[] = [
     programs: [
       {
         id: 'karate-kids',
-        title: 'Каратэ Кёкусинкай для малышей',
+        title: 'Карате Кёкусинкай для малышей',
         ageGroup: '4-7 лет',
         schedule: 'вт 18:00-18:45, чт 18:00-18:45, сб 11:00-11:45',
         price: 3200,
