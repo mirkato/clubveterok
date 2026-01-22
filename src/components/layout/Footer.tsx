@@ -77,23 +77,38 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-bold mb-6">Родителям</h3>
             <ul className="space-y-3">
-              {[
-                'Расписание',
-                'Цены и акции',
-                'Педагоги',
-                'Каникулярные программы',
-                'Дни рождения',
-                'FAQ'
-              ].map((item, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href="/about"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  О клубе
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/schedule"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Расписание
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/teachers"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Наставники
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/events"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Мероприятия
+                </a>
+              </li>
             </ul>
           </div>
           
@@ -113,7 +128,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 text-indigo-400 mr-3 flex-shrink-0" />
-                <span className="text-gray-400">club@veterok.ru</span>
+                <span className="text-gray-400">info@clubveterok.ru</span>
               </div>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 text-indigo-400 mr-3 flex-shrink-0" />
@@ -140,8 +155,8 @@ const Footer: React.FC = () => {
             © 2024 Детский клуб «Ветерок». ИП Шелихов Д.А.
           </div>
           <div className="flex space-x-6">
-            <a 
-              href="/privacy" 
+            <a
+              href="/privacy-policy"
               className="text-gray-500 hover:text-gray-300 text-sm"
             >
               Политика конфиденциальности

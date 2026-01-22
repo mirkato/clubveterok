@@ -23,15 +23,14 @@ const PricesPage: React.FC = () => {
               </h2>
               <p className="text-gray-600">
                 Мы готовим для вас подробную информацию о тарифах, пакетах и акциях.
-                Первая пробная встреча — всегда бесплатно!
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               {[
-                { title: 'Пробное занятие', price: 'Бесплатно', desc: 'Знакомство с клубом' },
-                { title: 'Месячный абонемент', price: 'от 2 800 ₽', desc: 'На 1 направление' },
-                { title: 'Пакет «Всё включено»', price: '7 900 ₽', desc: 'Неограниченно активностей' }
-              ].map((item, index) => (
+                { title: 'Пробное занятие', price: 'от 300 руб.', desc: 'Знакомство с клубом' },
+                { title: 'Месячный абонемент', price: 'от 2 400 ₽', desc: 'На 1 направление' },
+                { title: 'Разовые мастер-классы', price: 'от 300 ₽', desc: 'На все направления' }
+               ].map((item, index) => (
                 <div key={index} className="border border-gray-200 rounded-lg p-6 text-center hover:border-brand-blue transition-colors">
                   <h3 className="font-bold text-lg text-gray-800 mb-2">{item.title}</h3>
                   <div className="text-2xl font-bold text-brand-blue mb-2">{item.price}</div>

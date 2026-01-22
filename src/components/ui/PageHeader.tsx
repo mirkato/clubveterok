@@ -29,8 +29,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   };
 
   // Функция для получения класса фона
-  const getBgColorClass = (color: string) => {
-    return bgColorClasses[color] || `bg-gradient-to-r from-${color}/90 to-${color}`;
+  const getBgClass = () => {
+    return bgColorClasses[bgColor] || `bg-gradient-to-r from-${bgColor}/90 to-${bgColor}`;
   };
 
   // Определяем выравнивание текста
@@ -40,7 +40,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   };
 
   return (
-    <div className={`${getBgColorClass(bgColor)} py-12 md:py-16 lg:py-20 ${className}`}>
+    <div className={`${getBgClass()} py-12 md:py-16 lg:py-20 ${className}`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className={`max-w-4xl mx-auto ${alignClasses[align]}`}>
           {subtitle && (

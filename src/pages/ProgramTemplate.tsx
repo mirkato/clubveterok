@@ -22,6 +22,7 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
         title={program.title}
         subtitle={pageData.subtitle}
         bgColor={pageData.heroBgColor}
+        backgroundImage={pageData.backgroundImage}
       />
       
       <Container className="py-12">

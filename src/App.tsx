@@ -17,6 +17,8 @@ import TryFreePage from './pages/TryFreePage';
 import CybertonicPage from './pages/CybertonicPage';
 import ProgramCategoryPage from './pages/ProgramCategoryPage';
 import ProgramDetailPage from './pages/ProgramDetailPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import SitemapPage from './pages/SitemapPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const App: React.FC = () => {
@@ -43,6 +45,8 @@ const App: React.FC = () => {
         {/* Специальные страницы */}
         <Route path="/new-residents" element={<TryFreePage />} />
         <Route path="/doubts" element={<TryFreePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/sitemap" element={<SitemapPage />} />
         
         {/* Страница 404 */}
         <Route path="*" element={<NotFoundPage />} />

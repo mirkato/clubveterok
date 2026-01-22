@@ -1,24 +1,105 @@
+// CTASection.tsx - упрощенная версия
 import React, { useState } from 'react';
-import { Check, Shield, Send } from 'lucide-react';
+import { Check, Shield, Send, Loader2 } from 'lucide-react';
 import Container from '../layout/Container';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import { programCategories } from '../../data/programs-datas';
+import { sendToTelegram } from '../../services/telegram-service';
 
 const CTASection: React.FC = () => {
-  const [selectedProgram, setSelectedProgram] = useState<string>('');
+  const [selectedPrograms, setSelectedPrograms] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    parent_name: '',
+    parent_phone: '',
+    child_name_age: '',
+    comment: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
+  
+  // Flatten all programs from categories and format them
+  const programs = programCategories
+    .flatMap(category => category.programs)
+    .map(program => `${program.title} (${program.ageGroup})`);
+  
+  // Add "Другое" option at the end
+  const programsWithOther = [...programs, 'Другое (укажите в комментарии)'];
 
-  const programs = [
-    'Scratch-программирование (7-14 лет)',
-    'Хип-хоп (10-16 лет)',
-    'Рисование (5-12 лет)',
-    'Подготовка к школе (5-7 лет)',
-    'Другое (укажите в комментарии)'
-  ];
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleProgramChange = (program: string) => {
+    setSelectedPrograms(prev => {
+      if (prev.includes(program)) {
+        return prev.filter(p => p !== program);
+      } else {
+        return [...prev, program];
+      }
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь будет логика отправки формы
-    console.log('Form submitted:', selectedProgram);
+    
+    // Базовая валидация на клиенте
+    if (selectedPrograms.length === 0 || !formData.parent_name || !formData.parent_phone || !formData.child_name_age) {
+      setSubmitResult({
+        success: false,
+        message: 'Пожалуйста, заполните все обязательные поля'
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitResult(null);
+    
+    try {
+      // Формируем данные для отправки
+      const payload = {
+        parent_name: formData.parent_name.trim(),
+        parent_phone: formData.parent_phone.trim(),
+        child_name_age: formData.child_name_age.trim(),
+        program: selectedPrograms.join(', '),
+        comment: formData.comment.trim(),
+        page_url: window.location.href
+      };
+      
+      // Отправляем данные в Telegram
+      const success = await sendToTelegram(payload);
+      
+      setSubmitResult({
+        success: success,
+        message: success
+          ? 'Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.'
+          : 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.'
+      });
+      
+      // Очищаем форму при успешной отправке
+      if (success) {
+        setFormData({
+          parent_name: '',
+          parent_phone: '',
+          child_name_age: '',
+          comment: '',
+        });
+        setSelectedPrograms([]);
+      }
+      
+    } catch (error) {
+      console.error('Ошибка отправки формы:', error);
+      setSubmitResult({
+        success: false,
+        message: 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -30,9 +111,9 @@ const CTASection: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Запишитесь на{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-                бесплатное
+                пробное
               </span>{' '}
-              пробное занятие
+              занятие
             </h2>
             
             <div className="space-y-4 mb-8">
@@ -63,29 +144,46 @@ const CTASection: React.FC = () => {
           {/* Правая часть - форма */}
           <Card>
             <form onSubmit={handleSubmit}>
+              {submitResult && (
+                <div className={`p-4 rounded-lg mb-6 ${
+                  submitResult.success 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  <div className="flex items-center">
+                    {submitResult.success ? (
+                      <Check className="w-5 h-5 mr-2 flex-shrink-0" />
+                    ) : (
+                      <span className="text-red-500 mr-2">✕</span>
+                    )}
+                    <span>{submitResult.message}</span>
+                  </div>
+                </div>
+              )}
+              
               <h3 className="text-xl font-bold text-gray-900 mb-6">
                 Выберите направление
               </h3>
               
               <div className="space-y-3 mb-6">
-                {programs.map((program) => (
+                {programsWithOther.map((program) => (
                   <label
                     key={program}
                     className={`
                       flex items-center p-3 rounded-lg border cursor-pointer
                       transition-all duration-200
-                      ${selectedProgram === program 
-                        ? 'border-indigo-500 bg-indigo-50' 
+                      ${selectedPrograms.includes(program)
+                        ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-200 hover:border-gray-300'
                       }
                     `}
                   >
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="program"
                       value={program}
-                      checked={selectedProgram === program}
-                      onChange={(e) => setSelectedProgram(e.target.value)}
+                      checked={selectedPrograms.includes(program)}
+                      onChange={(e) => handleProgramChange(e.target.value)}
                       className="mr-3 h-4 w-4 text-indigo-600"
                     />
                     <span className="text-gray-700">{program}</span>
@@ -96,13 +194,20 @@ const CTASection: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <input
                   type="text"
+                  name="parent_name"
                   placeholder="Имя родителя"
+                  value={formData.parent_name}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
                   required
                 />
+                
                 <input
                   type="tel"
+                  name="parent_phone"
                   placeholder="Ваш телефон"
+                  value={formData.parent_phone}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
                   required
                 />
@@ -110,13 +215,19 @@ const CTASection: React.FC = () => {
               
               <input
                 type="text"
+                name="child_name_age"
                 placeholder="Имя и возраст ребёнка"
+                value={formData.child_name_age}
+                onChange={handleInputChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition mb-4"
                 required
               />
               
               <textarea
+                name="comment"
                 placeholder="Комментарий или вопрос (необязательно)"
+                value={formData.comment}
+                onChange={handleInputChange}
                 rows={3}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition mb-6 resize-none"
               />
@@ -128,21 +239,31 @@ const CTASection: React.FC = () => {
                 </a>
               </div>
               
-              <Button 
-                type="submit" 
-                variant="primary" 
-                fullWidth 
+              <Button
+                type="submit"
+                variant="primary"
                 size="lg"
-                icon={Send}
+                icon={isSubmitting ? Loader2 : Send}
                 iconPosition="right"
+                className="w-full"
+                disabled={isSubmitting || selectedPrograms.length === 0}
               >
-                Записаться на пробное
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Отправка...
+                  </>
+                ) : (
+                  'Записаться на пробное'
+                )}
               </Button>
               
               <div className="text-center mt-4 text-sm text-gray-600">
                 Или напишите нам в{' '}
                 <a 
                   href="https://t.me/VeterokSkaska" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-indigo-600 font-semibold hover:underline"
                 >
                   Telegram →

@@ -1,56 +1,112 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const MapSection: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  
   // Список посёлков с расстоянием и временем
   const locations = [
     { 
-      name: 'Каменка', 
+      name: 'КП "Сказка', 
       distance: '0.5 км', 
       time: '5 мин пешком', 
       highlight: true,
       description: 'Мы находимся здесь!'
     },
     { 
+      name: 'Каменка', 
+      distance: '3,1 км', 
+      time: '6 мин на машине',
+      icon: '🚗'
+    },
+    { 
       name: 'Кулига', 
-      distance: '3 км', 
-      time: '10 мин на машине',
-      icon: '🚗'
-    },
-    { 
-      name: 'Альпийская долина', 
-      distance: '5 км', 
-      time: '15 мин на машине',
-      icon: '🚗'
-    },
-    { 
-      name: 'Насекина', 
-      distance: '2 км', 
+      distance: '4,3 км', 
       time: '8 мин на машине',
       icon: '🚗'
     },
     { 
+      name: 'Альпийская долина', 
+      distance: '1 км', 
+      time: '15 мин пешком',
+    },
+    { 
+      name: 'Насекина', 
+      distance: '3,7 км', 
+      time: '7 мин на машине',
+      icon: '🚗'
+    },
+    { 
       name: 'Коняшина', 
-      distance: '4 км', 
-      time: '12 мин на машине',
+      distance: '7,4 км', 
+      time: '11 мин на машине',
       icon: '🚗'
     },
     { 
       name: 'Речкина', 
-      distance: '3 км', 
+      distance: '18.9 км', 
+      time: '21 мин на машине',
+      icon: '🚗'
+    },
+    { 
+      name: 'КП "Онегин"', 
+      distance: '8 км', 
       time: '10 мин на машине',
+      icon: '🚗'
+    },
+    { 
+      name: 'КП "Новокаменский"', 
+      distance: '9,2 км', 
+      time: '13 мин на машине',
+      icon: '🚗'
+    },
+    { 
+      name: 'Кулаково', 
+      distance: '14 км', 
+      time: '16 мин на машине',
       icon: '🚗'
     }
   ];
 
-  // Посёлки для схематичной карты
-  const mapPoints = [
-    { top: '35%', left: '45%', name: 'Каменка', isCenter: true },
-    { top: '25%', left: '60%', name: 'Кулига' },
-    { top: '15%', left: '70%', name: 'Альпийская долина' },
-    { top: '50%', left: '70%', name: 'Насекина' },
-    { top: '65%', left: '55%', name: 'Коняшина' },
-    { top: '55%', left: '30%', name: 'Речкина' },
-  ];
+  // Функция для построения маршрута
+  const handleBuildRoute = () => {
+    setIsLoading(true);
+    
+    // Проверяем поддержку геолокации
+    if (!navigator.geolocation) {
+      alert('Геолокация не поддерживается вашим браузером');
+      setIsLoading(false);
+      return;
+    }
+
+    // Получаем текущее местоположение пользователя
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        
+        // Адрес клуба (село Каменка, ул. Пионовая, д. 15)
+        const destination = 'село Каменка, ул. Пионовая, д. 15';
+        
+        // Создаем URL для Яндекс.Карт с маршрутом
+        const yandexMapsUrl = `https://yandex.ru/maps/?rtext=${latitude},${longitude}~${encodeURIComponent(destination)}&rtt=auto`;
+        
+        // Открываем Яндекс.Карты в новой вкладке
+        window.open(yandexMapsUrl, '_blank');
+        
+        setIsLoading(false);
+      },
+      (error) => {
+        console.error('Ошибка получения местоположения:', error);
+        alert('Не удалось получить ваше местоположение. Пожалуйста, введите адрес вручную в Яндекс.Картах.');
+        
+        // Открываем Яндекс.Карты без маршрута, чтобы пользователь мог ввести адрес вручную
+        const destination = 'село Каменка, ул. Пионовая, д. 15';
+        const yandexMapsUrl = `https://yandex.ru/maps/?text=${encodeURIComponent(destination)}`;
+        window.open(yandexMapsUrl, '_blank');
+        
+        setIsLoading(false);
+      }
+    );
+  };
 
   return (
     <section className="py-16 bg-gradient-to-b from-white to-gray-50">
@@ -59,7 +115,7 @@ const MapSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Удобное расположение в{' '}
             <span className="bg-gradient-to-r from-brand-blue to-brand-green bg-clip-text text-transparent">
-              центре Каменского округа
+              на Ирбитском тракте
             </span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -128,82 +184,26 @@ const MapSection: React.FC = () => {
               </div>
               <div className="bg-gradient-to-br from-brand-lightgreen/10 to-brand-orange/10 rounded-xl p-4">
                 <div className="text-2xl mb-2">🚶</div>
-                <h4 className="font-bold text-gray-900 mb-2">Пешком из Каменки</h4>
-                <p className="text-sm text-gray-600">Всего 5-7 минут от любой точки посёлка</p>
+                <h4 className="font-bold text-gray-900 mb-2">Детская площадка</h4>
+                <p className="text-sm text-gray-600">Всего 100 м. от клуба</p>
               </div>
             </div>
           </div>
 
-          {/* Правая часть - схематичная карта */}
+          {/* Правая часть - Яндекс карта */}
           <div className="relative">
             <div className="bg-gradient-to-br from-brand-blue/5 to-brand-green/5 rounded-2xl p-8 border-2 border-brand-blue/20">
               <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
                 Схема расположения
               </h3>
               
-              <div className="relative h-96 bg-gradient-to-br from-blue-50 to-green-50 rounded-xl overflow-hidden">
-                {/* Фон карты с декоративными элементами */}
-                <div className="absolute inset-0">
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-brand-blue/20 to-brand-green/20 rounded-full"></div>
-                  
-                  {/* Дороги */}
-                  <div className="absolute top-1/2 left-1/4 right-1/4 h-1 bg-gray-300/50"></div>
-                  <div className="absolute top-1/4 bottom-1/4 left-1/2 w-1 bg-gray-300/50"></div>
-                  
-                  {/* Точки на карте */}
-                  {mapPoints.map((point, index) => (
-                    <div
-                      key={index}
-                      className="absolute"
-                      style={{ top: point.top, left: point.left }}
-                    >
-                      <div className={`
-                        relative flex items-center justify-center w-12 h-12 rounded-full
-                        ${point.isCenter 
-                          ? 'bg-gradient-to-br from-brand-blue to-brand-green animate-pulse-slow' 
-                          : 'bg-white border-2 border-brand-blue/50'
-                        }
-                        shadow-lg
-                      `}>
-                        <span className={`font-bold ${point.isCenter ? 'text-white' : 'text-brand-blue'}`}>
-                          {point.isCenter ? 'В' : point.name.charAt(0)}
-                        </span>
-                        
-                        {/* Линии к центру для периферийных точек */}
-                        {!point.isCenter && (
-                          <div className="absolute w-20 h-0.5 bg-brand-blue/30 -left-20 top-1/2 transform -translate-y-1/2"></div>
-                        )}
-                        
-                        {/* Подпись */}
-                        <div className={`
-                          absolute whitespace-nowrap text-sm font-medium px-2 py-1 rounded
-                          ${point.isCenter 
-                            ? 'bottom-full mb-2 bg-gradient-to-r from-brand-blue to-brand-green text-white' 
-                            : 'top-full mt-2 bg-white text-gray-900 border border-gray-200'
-                          }
-                          shadow-sm
-                        `}>
-                          {point.name}
-                          {point.isCenter && ' • Клуб "Ветерок"'}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+              <div className="bg-gray-100 rounded-lg p-6 flex items-center justify-center">
+                <div style={{position: 'relative', overflow: 'hidden'}} className="w-full h-80">
+                  <a href="https://yandex.ru/maps/org/detskiy_klub_veterok/110338595840/?utm_medium=mapframe&utm_source=maps" style={{color: '#eee', fontSize: '12px', position: 'absolute', top: '0px'}}>Детский клуб Ветерок</a>
+                  <a href="https://yandex.ru/maps/11176/tyumen-oblast/category/further_education/184106162/?utm_medium=mapframe&utm_source=maps" style={{color: '#eee', fontSize: '12px', position: 'absolute', top: '14px'}}>Дополнительное образование в Тюменской области</a>
+                  <iframe src="https://yandex.ru/map-widget/v1/?ll=65.077263%2C57.256385&mode=search&oid=110338595840&ol=biz&sctx=ZAAAAAgBEAAaKAoSCQYrTrUWRVBAEQkyAiocn0xAEhIJebEwRE5frz8R1CzQ7pBioD8iBgABAgMEBSgKOABAk40GSAFqAnJ1nQHNzMw9oAEAqAEAvQGvqnmGggJJ0LrQsNC6INCy0YHRgtCw0LLQuNGC0Ywg0LrQsNGA0YLRgyDQv9GA0L7QtdC30LTQsCDQuNC3IDJnaXMg0L3QsCDRgdCw0LnRgooCAJICAJoCDGRlc2t0b3AtbWFwcw%3D%3D&sll=65.077263%2C57.256385&source=serp_navig&sspn=0.013562%2C0.004688&text=%D0%BA%D0%B0%D0%BA%20%D0%B2%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D0%BA%D0%B0%D1%80%D1%82%D1%83%20%D0%BF%D1%80%D0%BE%D0%B5%D0%B7%D0%B4%D0%B0%20%D0%B8%D0%B7%202gis%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82&z=16.6" width="100%" height="300" frameBorder="1" allowFullScreen={true} style={{position: 'relative'}} title="Карта проезда до Детского клуба Ветерок"></iframe>
                 </div>
               </div>
-              
-              {/* Легенда карты */}
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                <div className="flex items-center">
-                  <div className="w-4 h-4 bg-gradient-to-br from-brand-blue to-brand-green rounded-full mr-2"></div>
-                  <span className="text-sm text-gray-700">Клуб "Ветерок"</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-4 h-4 bg-white border-2 border-brand-blue/50 rounded-full mr-2"></div>
-                  <span className="text-sm text-gray-700">Ближайшие посёлки</span>
-                </div>
-              </div>
-            </div>
 
             {/* Адрес */}
             <div className="mt-6 bg-white rounded-xl p-6 border-2 border-brand-orange/20 shadow-sm">
@@ -217,13 +217,17 @@ const MapSection: React.FC = () => {
                   </p>
                   <div className="mt-3 flex items-center text-sm text-gray-600">
                     <span className="mr-4">📞 +7 (919) 925-97-65</span>
-                    <span>✉️ club@veterok.ru</span>
+                    <span>✉️ info@clubveterok.ru</span>
                   </div>
                 </div>
               </div>
               
-              <button className="mt-4 w-full py-3 bg-gradient-to-r from-brand-blue to-brand-green text-white rounded-lg font-semibold hover:shadow-lg transition-all">
-                Построить маршрут на Яндекс.Картах →
+              <button 
+                onClick={handleBuildRoute}
+                disabled={isLoading}
+                className="mt-4 w-full py-3 bg-gradient-to-r from-brand-blue to-brand-green text-white rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-70"
+              >
+                {isLoading ? 'Определение местоположения...' : 'Построить маршрут на Яндекс.Картах →'}
               </button>
             </div>
           </div>
@@ -241,6 +245,7 @@ const MapSection: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

@@ -14,6 +14,7 @@ interface ProgramCardProps {
   features: string[];
   color?: string;
   showDetailsButton?: boolean; // Новый пропс для управления отображением кнопки
+  programId?: string; // Добавляем ID программы для ссылки на пробное занятие
 }
 
 const ProgramCard: React.FC<ProgramCardProps> = ({
@@ -25,7 +26,8 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
   description,
   features = [], // По умолчанию пустой массив
   color = 'brand-blue',
-  showDetailsButton = true // По умолчанию показываем кнопку
+  showDetailsButton = true, // По умолчанию показываем кнопку
+  programId // Новый пропс для ID программы
 }) => {
   const colorClasses = {
     'brand-blue': 'border-blue-200 hover:border-blue-300',
@@ -84,19 +86,19 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
               // Find the program category and ID
               const categories = programCategories;
               let categoryId = '';
-              let programId = '';
+              let programIdLocal = '';
               
               for (const category of categories) {
                 const program = category.programs.find((p: any) => p.title === title);
                 if (program) {
                   categoryId = category.id;
-                  programId = program.id;
+                  programIdLocal = program.id;
                   break;
                 }
               }
               
-              if (categoryId && programId) {
-                window.location.href = `/programs/${categoryId}/${programId}`;
+              if (categoryId && programIdLocal) {
+                window.location.href = `/programs/${categoryId}/${programIdLocal}`;
               }
             }}
           >
@@ -106,7 +108,26 @@ const ProgramCard: React.FC<ProgramCardProps> = ({
         <Button
           variant="outline"
           className="w-full justify-center"
-          onClick={() => window.location.href = `/try-free?program=${title}`}
+          onClick={() => {
+            // Если programId передан, используем его, иначе ищем по названию
+            let programIdLocal = programId;
+            if (!programIdLocal) {
+              const categories = programCategories;
+              for (const category of categories) {
+                const program = category.programs.find((p: any) => p.title === title);
+                if (program) {
+                  programIdLocal = program.id;
+                  break;
+                }
+              }
+            }
+            
+            if (programIdLocal) {
+              window.location.href = `/try-free?program=${programIdLocal}`;
+            } else {
+              window.location.href = `/try-free?program=${encodeURIComponent(title)}`;
+            }
+          }}
         >
           Записаться на пробное занятие
         </Button>

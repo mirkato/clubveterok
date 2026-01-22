@@ -40,6 +40,7 @@ const ProgramDetailPage: React.FC = () => {
           title={program.title}
           subtitle={pageData.subtitle}
           bgColor={pageData.heroBgColor}
+          backgroundImage={pageData.backgroundImage}
         />
         
         <Container className="py-12">

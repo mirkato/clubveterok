@@ -39,7 +39,7 @@ export const scheduleSections: ScheduleSection[] = [
         age: '5-7 лет',
         status: 'Идет набор',
         schedule: '2 раза в неделю, 60 минут',
-        days: 'Индивидуальный график',
+        days: 'Расписание формируеются',
         times: '',
         isNew: true,
         spots: 'Осталось 3 места'
@@ -78,7 +78,7 @@ export const scheduleSections: ScheduleSection[] = [
         schedule: '2 раза в неделю, 60 минут',
         days: 'Вт/Чт',
         times: '10:30-11:30',
-        spots: 'Группа сформирована'
+        spots: 'Осталось 4 места'
       },
       {
         id: 5,
@@ -86,11 +86,11 @@ export const scheduleSections: ScheduleSection[] = [
         title: 'Арт-ателье «Мастерская волшебных ремесел»',
         subtitle: 'Рукоделие и творчество',
         age: '4-5 лет',
-        status: 'Занятия идут',
+        status: 'Идет набор',
         schedule: '1 раз в неделю, 40 минут',
         days: 'Суббота',
         times: '11:20-12:00',
-        spots: 'Осталось 2 места'
+        spots: 'Осталось 6 мест'
       },
       {
         id: 6,
@@ -102,7 +102,7 @@ export const scheduleSections: ScheduleSection[] = [
         schedule: '1 раз в неделю, 60 минут',
         days: 'Суббота',
         times: '12:00-13:00',
-        spots: 'Группа сформирована'
+        spots: 'Осталось 6 мест'
       },
       {
         id: 7,
@@ -158,7 +158,7 @@ export const scheduleSections: ScheduleSection[] = [
         schedule: '3 раза в неделю, 2 часа',
         days: 'Пн/Ср/Пт',
         times: '10:00-12:00',
-        spots: 'Группа сформирована'
+        spots: 'Осталось 3 места'
       },
       {
         id: 11,
@@ -242,7 +242,7 @@ export const scheduleSections: ScheduleSection[] = [
         schedule: '2 раза в неделю, 60 минут',
         days: 'Пн/Чт',
         times: '17:30-18:30',
-        spots: 'Группа сформирована'
+        spots: 'Осталось 3 места'
       },
       {
         id: 18,
@@ -280,7 +280,7 @@ export const scheduleSections: ScheduleSection[] = [
         id: 20,
         programId: 'cybertonic',
         title: 'Игровая цифровая лаборатория «Кибертоник»',
-        subtitle: 'Scratch, 3D-моделирование, VR/AR',
+        subtitle: 'Scratch, 3D-моделирование, VR/AR, Робототехника',
         age: '8-14 лет',
         status: 'Занятия идут',
         schedule: '1 раз в неделю, 90 минут',
@@ -293,7 +293,7 @@ export const scheduleSections: ScheduleSection[] = [
         id: 21,
         programId: 'cybertonic',
         title: 'Игровая цифровая лаборатория «Кибертоник»',
-        subtitle: 'Scratch, 3D-моделирование, VR/AR',
+        subtitle: 'Scratch, 3D-моделирование, VR/AR, Робототехника',
         age: '8-14 лет',
         status: 'Занятия идут',
         schedule: '1 раз в неделю, 90 минут',

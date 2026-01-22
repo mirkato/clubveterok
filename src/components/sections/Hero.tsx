@@ -26,12 +26,12 @@ const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <button className="px-8 py-3 bg-gradient-to-r from-brand-blue to-brand-green text-white rounded-xl font-semibold hover:shadow-xl hover:-translate-y-1 transition-all">
+            <a href="/programs" className="px-8 py-3 bg-gradient-to-r from-brand-blue to-brand-green text-white rounded-xl font-semibold hover:shadow-xl hover:-translate-y-1 transition-all">
               Выбрать активность →
-            </button>
-            <button className="px-8 py-3 bg-white text-gray-800 border-2 border-brand-blue/30 rounded-xl font-semibold hover:border-brand-blue hover:bg-brand-blue/5 transition-all">
+            </a>
+            <a href="/schedule" className="px-8 py-3 bg-white text-gray-800 border-2 border-brand-blue/30 rounded-xl font-semibold hover:border-brand-blue hover:bg-brand-blue/5 transition-all">
               Посмотреть расписание
-            </button>
+            </a>
           </div>
           
           {/* Статистика */}
