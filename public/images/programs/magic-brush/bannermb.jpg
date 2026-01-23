@@ -1,0 +1,5 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#abcb4e" />
+  <circle cx="600" cy="200" r="100" fill="#33a0d8" />
+  <text x="50%" y="50%" fill="white" font-size="48" text-anchor="middle" dominant-baseline="middle">Magic Brush</text>
+</svg>
