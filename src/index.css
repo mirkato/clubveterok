@@ -41,6 +41,19 @@
   .card-orange {
     @apply border-2 border-orange-200 hover:border-orange-500 bg-gradient-to-b from-white to-orange-50;
   }
+  
+  /* Градиенты из дизайн-системы */
+  .gradient-brand {
+    background: linear-gradient(135deg, #33a0d8 0%, #1d9e3e 100%);
+  }
+  
+  .gradient-fresh {
+    background: linear-gradient(135deg, #abcb4e 0%, #33a0d8 50%, #1d9e3e 100%);
+  }
+  
+  .gradient-sun {
+    background: linear-gradient(135deg, #edb314 0%, #abcb4e 100%);
+  }
 }
 
 /* Анимации */
@@ -57,4 +70,33 @@
 
 .animate-slideDown {
   animation: slideDown 0.3s ease-out;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

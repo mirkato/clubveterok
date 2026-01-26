@@ -5,7 +5,7 @@ import Container from '../layout/Container';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import { programCategories } from '../../data/programs-datas';
-import { sendToTelegram } from '../../services/telegram-service';
+import { sendTryFreeToTelegram } from '../../services/telegram-service';
 
 const CTASection: React.FC = () => {
   const [selectedPrograms, setSelectedPrograms] = useState<string[]>([]);
@@ -71,7 +71,7 @@ const CTASection: React.FC = () => {
       };
       
       // Отправляем данные в Telegram
-      const success = await sendToTelegram(payload);
+      const success = await sendTryFreeToTelegram(payload);
       
       setSubmitResult({
         success: success,

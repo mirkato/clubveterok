@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import { useLocation } from 'react-router-dom';
-import { sendToTelegram } from '../services/telegram-service';
+import { sendTryFreeToTelegram } from '../services/telegram-service';
 import { getProgramById, programCategories } from '../data/programs-datas';
 import type { Program } from '../types/program-types';
 import { Check, Send, Loader2 } from 'lucide-react';
@@ -105,7 +105,7 @@ const TryFreePage: React.FC = () => {
       };
       
       // Отправляем данные в Telegram
-      const success = await sendToTelegram(payload);
+      const success = await sendTryFreeToTelegram(payload);
       
       setSubmitResult({
         success: success,

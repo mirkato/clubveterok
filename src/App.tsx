@@ -20,6 +20,7 @@ import ProgramDetailPage from './pages/ProgramDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import SitemapPage from './pages/SitemapPage';
 import NotFoundPage from './pages/NotFoundPage';
+import EventBirthdayPage from './pages/event-birthday';
 
 const App: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const App: React.FC = () => {
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/prices" element={<PricesPage />} />
         <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/birthday" element={<EventBirthdayPage />} />
         <Route path="/teachers" element={<TeachersPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />

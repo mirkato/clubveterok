@@ -24,6 +24,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     'brand-green': 'bg-gradient-to-r from-brand-green/90 to-brand-green',
     'brand-orange': 'bg-gradient-to-r from-brand-orange/90 to-brand-orange',
     'brand-lightgreen': 'bg-gradient-to-r from-brand-lightgreen/90 to-brand-lightgreen',
+    'gradient-fresh': 'gradient-fresh',
+    'gradient-brand': 'gradient-brand',
+    'gradient-sun': 'gradient-sun',
     'gray': 'bg-gradient-to-r from-gray-100 to-gray-200',
     'white': 'bg-white'
   };

@@ -1,29 +1,8 @@
-// src/services/telegram-service.ts
+// src/services/telegram-service.cjs
 const TELEGRAM_BOT_TOKEN = '8475422452:AAHSwZbAU-E8NREmVFsoIPiLJ9C7f_9-vWU';
 const TELEGRAM_CHAT_ID = '-5138101133';
 
-interface TryFreeFormData {
-  parent_name: string;
-  parent_phone: string;
-  child_name_age: string;
-  program: string;
-  comment: string;
-  page_url: string;
-}
-
-interface EventRegistrationData {
-  parentName: string;
-  phone: string;
-  email: string;
-  childName: string;
-  childAge: string;
-  selectedWorkshops: string[];
-  comments: string;
-  eventTitle: string;
-  workshopDetails: Array<{id: string, time: string, title: string, emoji: string}>;
-}
-
-export const sendTryFreeToTelegram = async (formData: TryFreeFormData): Promise<boolean> => {
+const sendTryFreeToTelegram = async (formData) => {
   try {
     // Format the message for Telegram
     const message = `
@@ -69,7 +48,7 @@ export const sendTryFreeToTelegram = async (formData: TryFreeFormData): Promise<
   }
 };
 
-export const sendEventRegistrationToTelegram = async (formData: EventRegistrationData): Promise<boolean> => {
+const sendEventRegistrationToTelegram = async (formData) => {
   try {
     // Format selected workshops
     const selectedWorkshopDetails = formData.selectedWorkshops.map(id => {
@@ -125,4 +104,9 @@ ${selectedWorkshopDetails || '—'}
     console.error('Error sending event registration to Telegram:', error);
     return false;
   }
+};
+
+module.exports = {
+  sendTryFreeToTelegram,
+  sendEventRegistrationToTelegram
 };

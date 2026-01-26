@@ -62,7 +62,7 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="mt-8 p-6 bg-gradient-brand rounded-xl text-white">
+            <div className="mt-8 p-6 gradient-brand rounded-xl text-white">
               <div className="flex items-center gap-3 mb-2">
                 <Sparkles className="w-6 h-6" />
                 <h3 className="text-xl font-bold">Наша миссия</h3>
@@ -194,7 +194,7 @@ const AboutPage: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gradient-sun rounded-2xl p-8 text-white">
+            <div className="gradient-sun rounded-2xl p-8 text-white">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-4xl">☀️</div>
                 <h3 className="text-2xl font-bold">Летние смены</h3>
@@ -203,7 +203,7 @@ const AboutPage: React.FC = () => {
               <p>Целых три месяца увлекательных программ! Каждая неделя — новая тема, новые открытия и новые друзья.</p>
             </div>
 
-            <div className="bg-gradient-fresh rounded-2xl p-8 text-white">
+            <div className="gradient-fresh rounded-2xl p-8 text-white">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-4xl">🍁❄️🌱</div>
                 <h3 className="text-2xl font-bold">Осень, зима, весна</h3>
