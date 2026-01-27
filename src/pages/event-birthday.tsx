@@ -160,7 +160,14 @@ const EventBirthdayPage: React.FC = () => {
               Посмотрите, как прошел наш первый год.            </h2>
             <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-6 md:p-8">
               <div className="aspect-video rounded-xl overflow-hidden shadow-lg">
-                <iframe src="https://vk.com/video_ext.php?oid=-229222504&id=456239040&hash=85b0e587227c0797&hd=3" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameBorder="0" allowFullScreen></iframe>
+                <iframe
+                  src="https://vk.com/video_ext.php?oid=-229222504&id=456239040&hash=85b0e587227c0797&hd=3"
+                  className="w-full h-full"
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                  frameBorder="0"
+                  allowFullScreen
+                  title="Видео о первом годе работы клуба"
+                ></iframe>
               </div>
               <p className="text-center text-gray-600 mt-4">
                 Видео с наших мероприятий.
