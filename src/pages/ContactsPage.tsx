@@ -1,11 +1,16 @@
 import Layout from '../components/layout/Layout';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 
 const ContactsPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Контакты детского клуба Ветерок в Каменке</title>
+        <meta name="description" content="Контактная информация детского клуба Ветерок в Каменке: адрес, телефон, Telegram. Запишитесь на пробное занятие!" />
+      </Helmet>
       <PageHeader
         title="Контакты"
         subtitle="Как нас найти и связаться"

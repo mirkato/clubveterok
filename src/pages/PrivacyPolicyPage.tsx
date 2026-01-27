@@ -1,11 +1,16 @@
 import Layout from '../components/layout/Layout';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Политика конфиденциальности детского клуба Ветерок</title>
+        <meta name="description" content="Политика конфиденциальности персональных данных детского клуба Ветерок в Каменке. Как мы собираем, используем и защищаем ваши данные." />
+      </Helmet>
       <PageHeader
         title="Политика конфиденциальности"
         subtitle="Ваши данные в безопасности"

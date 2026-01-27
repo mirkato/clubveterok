@@ -3,10 +3,15 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
+import { Helmet } from 'react-helmet-async';
 
 const CybertonicPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Кибертоник - Цифровая творческая лаборатория для детей в Каменке</title>
+        <meta name="description" content="Игровая лаборатория технологий и цифрового творчества для детей 8-14 лет в детском клубе «Ветерок» в Каменке. Программирование, 3D-моделирование, робототехника." />
+      </Helmet>
       <PageHeader
         title="Кибертоник"
         subtitle="Цифровая творческая лаборатория для детей"

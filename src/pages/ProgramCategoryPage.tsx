@@ -6,6 +6,7 @@ import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import ProgramCategory from '../components/sections/programs/ProgramCategory';
 import { programCategories } from '../data/programs-datas';
+import { Helmet } from 'react-helmet-async';
 
 const ProgramCategoryPage: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -28,6 +29,10 @@ const ProgramCategoryPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{category?.title} - Активности клуба Ветерок</title>
+        <meta name="description" content={`Программы и занятия по направлению "${category?.title}" в детском клубе Ветерок. Развивающие активности для детей 3-16 лет в Каменке.`} />
+      </Helmet>
       <PageHeader
         title={category.title}
         subtitle={category.description}

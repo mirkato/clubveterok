@@ -5,6 +5,7 @@ import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import EventRegistrationForm from '../components/forms/EventRegistrationForm';
 import AdultEventRegistrationForm from '../components/forms/AdultEventRegistrationForm';
+import { Helmet } from 'react-helmet-async';
 
 const EventRattanPage: React.FC = () => {
   const eventData = {
@@ -112,6 +113,10 @@ const EventRattanPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Мастер-класс «Магия ротанга» для взрослых в Каменке</title>
+        <meta name="description" content="Запишитесь на мастер-класс по плетению из ротанга для взрослых в детском клубе «Ветерок» в Каменке. Создайте уникальный предмет интерьера своими руками." />
+      </Helmet>
       <PageHeader
         title={eventData.title}
         subtitle={eventData.subtitle}

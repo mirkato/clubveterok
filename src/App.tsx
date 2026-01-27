@@ -1,6 +1,7 @@
 // src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Импорт страниц
 import HomePage from './pages/HomePage';
@@ -25,37 +26,39 @@ import EventRattanPage from './pages/event-rattan';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        {/* Основные страницы */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/programs/:categoryId" element={<ProgramCategoryPage />} />
-        <Route path="/programs/:categoryId/:programId" element={<ProgramDetailPage />} />
-        <Route path="/schedule" element={<SchedulePage />} />
-        <Route path="/prices" element={<PricesPage />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/events/birthday" element={<EventBirthdayPage />} />
-        <Route path="/events/rattan" element={<EventRattanPage />} />
-        <Route path="/teachers" element={<TeachersPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
-        
-        {/* Дополнительные страницы */}
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/try-free" element={<TryFreePage />} />
-        
-        {/* Специальные страницы */}
-        <Route path="/new-residents" element={<TryFreePage />} />
-        <Route path="/doubts" element={<TryFreePage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/sitemap" element={<SitemapPage />} />
-        
-        {/* Страница 404 */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <Routes>
+          {/* Основные страницы */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/programs" element={<ProgramsPage />} />
+          <Route path="/programs/:categoryId" element={<ProgramCategoryPage />} />
+          <Route path="/programs/:categoryId/:programId" element={<ProgramDetailPage />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+          <Route path="/prices" element={<PricesPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/birthday" element={<EventBirthdayPage />} />
+          <Route path="/events/rattan" element={<EventRattanPage />} />
+          <Route path="/teachers" element={<TeachersPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          
+          {/* Дополнительные страницы */}
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/try-free" element={<TryFreePage />} />
+          
+          {/* Специальные страницы */}
+          <Route path="/new-residents" element={<TryFreePage />} />
+          <Route path="/doubts" element={<TryFreePage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
+          
+          {/* Страница 404 */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 };
 

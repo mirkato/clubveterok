@@ -7,6 +7,7 @@ import { sendTryFreeToTelegram } from '../services/telegram-service';
 import { getProgramById, programCategories } from '../data/programs-datas';
 import type { Program } from '../types/program-types';
 import { Check, Send, Loader2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const TryFreePage: React.FC = () => {
   const location = useLocation();
@@ -138,6 +139,10 @@ const TryFreePage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Запись на пробное занятие - Детский клуб «Ветерок»</title>
+        <meta name="description" content="Запишитесь на бесплатное пробное занятие в детском клубе «Ветерок» в Каменке. Познакомьтесь с клубом и выберите подходящую активность для вашего ребенка." />
+      </Helmet>
       <PageHeader
         title={program ? `Запись на пробное занятие по "${program.title}"` : "Пробное занятие"}
         subtitle="Бесплатно и без обязательств"

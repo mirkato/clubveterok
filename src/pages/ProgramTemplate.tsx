@@ -4,6 +4,7 @@ import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import React from 'react';
 import type { Program } from '../data/programs-datas';
+import { Helmet } from 'react-helmet-async';
 
 interface ProgramTemplateProps {
   program: Program;
@@ -18,11 +19,14 @@ const ProgramTemplate: React.FC<ProgramTemplateProps> = ({ program }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{program.title} - Детский клуб Ветерок</title>
+        <meta name="description" content={program.description} />
+      </Helmet>
       <PageHeader
         title={program.title}
         subtitle={pageData.subtitle}
         bgColor={pageData.heroBgColor}
-        backgroundImage={pageData.backgroundImage}
       />
       
       <Container className="py-12">

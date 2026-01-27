@@ -2,10 +2,15 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
+import { Helmet } from 'react-helmet-async';
 
 const BlogPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Блог для родителей - Детский клуб «Ветерок»</title>
+        <meta name="description" content="Полезные статьи о развитии детей, советы родителям и анонсы мероприятий детского клуба «Ветерок» в Каменке." />
+      </Helmet>
       <PageHeader
         title="Блог для родителей"
         subtitle="Советы, статьи, анонсы"

@@ -2,10 +2,15 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
+import { Helmet } from 'react-helmet-async';
 
 const TeachersPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Наставники детского клуба «Ветерок» в Каменке</title>
+        <meta name="description" content="Познакомьтесь с командой опытных наставников детского клуба «Ветерок» в Каменке. Узнайте об их подходе к работе с детьми." />
+      </Helmet>
       <PageHeader
         title="Наставники"
         subtitle="Команда клуба «Ветерок»"

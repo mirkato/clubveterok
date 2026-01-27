@@ -4,6 +4,7 @@ import React from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import EventRegistrationForm from '../components/forms/EventRegistrationForm';
+import { Helmet } from 'react-helmet-async';
 
 const EventBirthdayPage: React.FC = () => {
   const eventData = {
@@ -124,6 +125,10 @@ const EventBirthdayPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>День рождения «Ветерка» и День открытых дверей в Каменке</title>
+        <meta name="description" content="Приглашаем на День рождения детского клуба «Ветерок» и День открытых дверей в Каменке. Мастер-классы, консультации, подарки и многое другое!" />
+      </Helmet>
       <PageHeader
         title={eventData.title}
         subtitle={eventData.subtitle}

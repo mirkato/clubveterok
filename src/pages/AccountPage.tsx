@@ -2,10 +2,15 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
+import { Helmet } from 'react-helmet-async';
 
 const AccountPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Личный кабинет - Детский клуб «Ветерок»</title>
+        <meta name="description" content="Личный кабинет для родителей. Управление расписанием ребёнка, отслеживание посещений и оплата занятий." />
+      </Helmet>
       <PageHeader
         title="Личный кабинет"
         subtitle="Для родителей"

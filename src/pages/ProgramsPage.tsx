@@ -1,6 +1,7 @@
 import Layout from '../components/layout/Layout';
 // src/pages/ProgramsPage.tsx
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import CategoryCard from '../components/sections/programs/CategoryCard';
@@ -9,6 +10,10 @@ import { programCategories } from '../data/programs-datas'; // Массив да
 const ProgramsPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Все активности клуба Ветерок - Развивающие занятия для детей</title>
+        <meta name="description" content="Полный список активностей детского клуба Ветерок: творчество, спорт, технологии, развитие. Занятия для детей 3-16 лет в Каменке." />
+      </Helmet>
       <PageHeader
         title="Все активности клуба"
         subtitle="Выберите направление, которое понравится вашему ребёнку. Каждая встреча — это творчество, игра и новые друзья."
@@ -33,7 +38,7 @@ const ProgramsPage: React.FC = () => {
             />
           ))}
         </div>
-    
+     
         {/* CTA-секция */}
         <div className="mt-20 bg-gradient-to-r from-brand-blue to-brand-green rounded-2xl p-8 md:p-12 text-white text-center">
           <h3 className="text-2xl md:text-3xl font-bold mb-4">

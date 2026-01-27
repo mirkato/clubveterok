@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import { Calendar, Clock, Users, Filter, CheckCircle, Star, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
@@ -29,6 +30,10 @@ const SchedulePage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Расписание детского клуба Ветерок в Каменке на январь 2026</title>
+        <meta name="description" content="Актуальное расписание занятий детского клуба Ветерок в Каменке на январь 2026. Творчество, спорт, технологии для детей 3-16 лет." />
+      </Helmet>
       <PageHeader
         title="Расписание активностей на Январь 2026"
         subtitle="Планируйте встречи вашего ребёнка"

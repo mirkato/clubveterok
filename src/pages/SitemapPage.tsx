@@ -2,6 +2,7 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
+import { Helmet } from 'react-helmet-async';
 
 const SitemapPage: React.FC = () => {
   // Site structure data
@@ -95,6 +96,10 @@ const SitemapPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Карта сайта - Детский клуб «Ветерок»</title>
+        <meta name="description" content="Полная структура сайта детского клуба «Ветерок». Навигация по всем разделам: программы, расписание, мероприятия, контакты и другая информация." />
+      </Helmet>
       <PageHeader
         title="Карта сайта"
         subtitle="Полная структура сайта"

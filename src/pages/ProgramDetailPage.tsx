@@ -1,6 +1,7 @@
 // src/pages/ProgramDetailPage.tsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Layout from '../components/layout/Layout';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
@@ -18,6 +19,10 @@ const ProgramDetailPage: React.FC = () => {
   if (!category || !program) {
     return (
       <Layout>
+        <Helmet>
+          <title>Программа не найдена - Детский клуб Ветерок</title>
+          <meta name="description" content="Запрашиваемая программа не существует." />
+        </Helmet>
         <Container className="py-12">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">Программа не найдена</h1>
@@ -36,11 +41,14 @@ const ProgramDetailPage: React.FC = () => {
   if (pageData) {
     return (
       <Layout>
+        <Helmet>
+          <title>{program.title} - Детский клуб Ветерок</title>
+          <meta name="description" content={program.description} />
+        </Helmet>
         <PageHeader
           title={program.title}
           subtitle={pageData.subtitle}
           bgColor={pageData.heroBgColor}
-          backgroundImage={pageData.backgroundImage}
         />
         
         <Container className="py-12">
@@ -53,6 +61,10 @@ const ProgramDetailPage: React.FC = () => {
   // Если нет расширенных данных, используем старый формат
   return (
     <Layout>
+      <Helmet>
+        <title>{program.title} - {category.title} - Детский клуб Ветерок</title>
+        <meta name="description" content={program.description} />
+      </Helmet>
       <PageHeader
         title={program.title}
         subtitle={category.title}

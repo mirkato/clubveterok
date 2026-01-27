@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import Card from '../components/ui/Card';
@@ -26,6 +27,10 @@ const EventsPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Мероприятия детского клуба Ветерок в Каменке</title>
+        <meta name="description" content="Календарь мероприятий детского клуба Ветерок в Каменке: мастер-классы, праздники, открытые дни. Запишитесь заранее!" />
+      </Helmet>
       <PageHeader
         title="Мероприятия"
         subtitle="Календарь событий"

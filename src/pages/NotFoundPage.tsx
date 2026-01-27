@@ -2,10 +2,15 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../components/layout/Container';
+import { Helmet } from 'react-helmet-async';
 
 const NotFoundPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Страница не найдена - Детский клуб «Ветерок»</title>
+        <meta name="description" content="Запрашиваемая страница не найдена. Возможно, вы перешли по устаревшей ссылке или страница была перемещена." />
+      </Helmet>
       <Container>
         <div className="max-w-2xl mx-auto text-center py-16">
           <div className="text-9xl font-bold text-brand-blue/20 mb-8">404</div>

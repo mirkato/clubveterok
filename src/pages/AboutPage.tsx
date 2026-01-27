@@ -1,5 +1,6 @@
 import Layout from '../components/layout/Layout';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import { CalendarDays, Users, MapPin, Sparkles, Gamepad2, Palette, Brain, Heart } from 'lucide-react';
@@ -41,6 +42,10 @@ const AboutPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>О клубе Ветерок - Детский клуб в Каменке</title>
+        <meta name="description" content="Детский клуб Ветерок в Каменке. Узнайте о нашем подходе к развитию детей, мероприятиях и творческой среде." />
+      </Helmet>
       <PageHeader
         title="«Ветерок» — это больше, чем клуб"
         subtitle="Место, где растут мечты, дружба и новые таланты"

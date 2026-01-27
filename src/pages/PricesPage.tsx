@@ -1,11 +1,16 @@
 import Layout from '../components/layout/Layout';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 
 const PricesPage: React.FC = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Цены на занятия в детском клубе Ветерок в Каменке</title>
+        <meta name="description" content="Стоимость занятий в детском клубе Ветерок в Каменке. Пробные занятия, абонементы, разовые посещения. Гибкие тарифы для детей 3-16 лет." />
+      </Helmet>
       <PageHeader
         title="Стоимость встреч"
         subtitle="Прозрачные цены и тарифы"
