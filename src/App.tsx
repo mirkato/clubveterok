@@ -21,6 +21,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import SitemapPage from './pages/SitemapPage';
 import NotFoundPage from './pages/NotFoundPage';
 import EventBirthdayPage from './pages/event-birthday';
+import EventRattanPage from './pages/event-rattan';
 
 const App: React.FC = () => {
   return (
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         <Route path="/prices" element={<PricesPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/birthday" element={<EventBirthdayPage />} />
+        <Route path="/events/rattan" element={<EventRattanPage />} />
         <Route path="/teachers" element={<TeachersPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contacts" element={<ContactsPage />} />

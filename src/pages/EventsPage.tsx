@@ -15,6 +15,15 @@ const EventsPage: React.FC = () => {
     description: "Целый год мы растем, играем и развиваемся вместе с вашими детьми, и это невероятное счастье! Приглашаем всю вашу семью на наш большой праздник — уютный День открытых дверей, где каждый почувствует себя как дома.",
   };
 
+  // Data for the rattan event
+  const rattanEvent = {
+    title: "Мастер-класс «Магия ротанга»",
+    date: "31 января 2026 г.",
+    time: "с 12:00 до 17:00",
+    location: "Детский клуб «Ветерок», КП «Сказка», ул. Пионовая, 15",
+    description: "Освойте древнее искусство плетения из натурального материала. Создайте своими руками уникальный предмет интерьера и проведите время в творческой атмосфере.",
+  };
+
   return (
     <Layout>
       <PageHeader
@@ -30,6 +39,63 @@ const EventsPage: React.FC = () => {
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-1 gap-8 mb-12">
+            {/* Rattan Event Card */}
+            <Card hover={true} className="flex flex-col md:flex-row">
+              <div className="md:w-1/3 mb-6 md:mb-0 flex items-center justify-center">
+                <div className="gradient-brand rounded-xl w-48 h-48 flex items-center justify-center">
+                  <span className="text-6xl">🪴</span>
+                </div>
+              </div>
+              <div className="md:w-2/3 md:pl-8">
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="bg-brand-orange text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Мастер-класс
+                  </span>
+                  <span className="bg-brand-green text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Для взрослых
+                  </span>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                  {rattanEvent.title}
+                </h3>
+                
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center">
+                    <span className="text-2xl mr-3">📅</span>
+                    <span className="text-gray-700 font-medium">{rattanEvent.date}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-2xl mr-3">⏰</span>
+                    <span className="text-gray-700">{rattanEvent.time}</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-2xl mr-3 mt-1">📍</span>
+                    <span className="text-gray-700">{rattanEvent.location}</span>
+                  </div>
+                </div>
+                
+                <p className="text-gray-600 mb-6">
+                  {rattanEvent.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-4">
+                  <Button
+                    variant="primary"
+                    onClick={() => window.location.href = '/events/rattan'}
+                  >
+                    Подробнее о мастер-классе
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => window.location.href = '/events/rattan#registration'}
+                  >
+                    Записаться на мастер-класс
+                  </Button>
+                </div>
+              </div>
+            </Card>
+
             {/* Birthday Event Card */}
             <Card hover={true} className="flex flex-col md:flex-row">
               <div className="md:w-1/3 mb-6 md:mb-0 flex items-center justify-center">

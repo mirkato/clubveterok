@@ -12,15 +12,17 @@ interface TryFreeFormData {
 }
 
 interface EventRegistrationData {
-  parentName: string;
+  parentName?: string;
   phone: string;
-  email: string;
-  childName: string;
-  childAge: string;
-  selectedWorkshops: string[];
+  email?: string;
+  childName?: string;
+  childAge?: string;
+  selectedWorkshops?: string[];
   comments: string;
   eventTitle: string;
-  workshopDetails: Array<{id: string, time: string, title: string, emoji: string}>;
+  workshopDetails?: Array<{id: string, time: string, title: string, emoji: string}>;
+  isAdult?: boolean;
+  name?: string;
 }
 
 export const sendTryFreeToTelegram = async (formData: TryFreeFormData): Promise<boolean> => {
@@ -71,14 +73,30 @@ export const sendTryFreeToTelegram = async (formData: TryFreeFormData): Promise<
 
 export const sendEventRegistrationToTelegram = async (formData: EventRegistrationData): Promise<boolean> => {
   try {
-    // Format selected workshops
-    const selectedWorkshopDetails = formData.selectedWorkshops.map(id => {
-      const workshop = formData.workshopDetails.find(w => w.id === id);
-      return workshop ? `${workshop.emoji} ${workshop.time} - ${workshop.title}` : '';
-    }).filter(Boolean).join('\n');
+    let message = '';
+    
+    if (formData.isAdult) {
+      // Формат сообщения для взрослых участников
+      message = `
+🎉 *Новая заявка на мастер-класс (для взрослых)*
 
-    // Format the message for Telegram
-    const message = `
+🎂 *Мероприятие:* ${formData.eventTitle}
+
+👤 *Имя участника:* ${formData.name}
+📞 *Телефон:* ${formData.phone}
+
+💬 *Комментарии:* ${formData.comments || '—'}
+
+📅 *Дата заявки:* ${new Date().toLocaleString('ru-RU')}
+      `;
+    } else {
+      // Формат сообщения для детских мероприятий
+      const selectedWorkshopDetails = formData.selectedWorkshops?.map(id => {
+        const workshop = formData.workshopDetails?.find(w => w.id === id);
+        return workshop ? `${workshop.emoji} ${workshop.time} - ${workshop.title}` : '';
+      }).filter(Boolean).join('\n');
+
+      message = `
 🎉 *Новая заявка на мероприятие*
 
 🎂 *Мероприятие:* ${formData.eventTitle}
@@ -95,7 +113,8 @@ ${selectedWorkshopDetails || '—'}
 💬 *Комментарии:* ${formData.comments || '—'}
 
 📅 *Дата заявки:* ${new Date().toLocaleString('ru-RU')}
-    `;
+      `;
+    }
 
     // Send message to Telegram
     const response = await fetch(
