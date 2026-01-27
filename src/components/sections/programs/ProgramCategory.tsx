@@ -2,7 +2,6 @@
 import React from 'react';
 import ProgramCard from './ProgramCard';
 import type { Program } from '../../../types/program-types';
-import { BookOpen, Palette, Code, Music } from 'lucide-react';
 
 interface ProgramCategoryProps {
   title: string;

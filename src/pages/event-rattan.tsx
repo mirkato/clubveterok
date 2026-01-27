@@ -3,7 +3,6 @@ import Layout from '../components/layout/Layout';
 import React from 'react';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
-import EventRegistrationForm from '../components/forms/EventRegistrationForm';
 import AdultEventRegistrationForm from '../components/forms/AdultEventRegistrationForm';
 import { Helmet } from 'react-helmet-async';
 
@@ -98,17 +97,6 @@ const EventRattanPage: React.FC = () => {
     "Навыки, которые можно применять дальше",
     "Список магазинов с материалами",
     "Хорошее настроение и вдохновение"
-  ];
-
-  // Данные для формы
-  const workshopForForm = [
-    { 
-      id: 'rattan-master', 
-      time: '12:00 - 17:00', 
-      title: 'Мастер-класс "Магия ротанга"', 
-      emoji: '🌟',
-      description: 'Плетение ведра из натурального ротанга'
-    },
   ];
 
   return (

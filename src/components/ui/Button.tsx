@@ -1,7 +1,7 @@
 // src/components/ui/Button.tsx
 import React from 'react';
 import type { LucideProps } from 'lucide-react'; // Измененный импорт
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;

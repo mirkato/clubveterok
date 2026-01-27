@@ -15,7 +15,6 @@ import ContactsPage from './pages/ContactsPage';
 import BlogPage from './pages/BlogPage';
 import AccountPage from './pages/AccountPage';
 import TryFreePage from './pages/TryFreePage';
-import CybertonicPage from './pages/CybertonicPage';
 import ProgramCategoryPage from './pages/ProgramCategoryPage';
 import ProgramDetailPage from './pages/ProgramDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';

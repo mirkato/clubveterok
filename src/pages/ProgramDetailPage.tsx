@@ -6,7 +6,6 @@ import Layout from '../components/layout/Layout';
 import Container from '../components/layout/Container';
 import PageHeader from '../components/ui/PageHeader';
 import { programCategories } from '../data/programs-datas';
-import Button from '../components/ui/Button';
 import ExtendedProgramView from '../components/sections/programs/ExtendedProgramView';
 
 const ProgramDetailPage: React.FC = () => {

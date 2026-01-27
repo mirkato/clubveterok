@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import PageHeader from '../components/ui/PageHeader';
 import Container from '../components/layout/Container';
 import { Calendar, Clock, Users, Filter, CheckCircle, Star, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
-import { scheduleSections, scheduleFilters, scheduleSectionTitles } from '../data/schedule-data';
+import { scheduleSections, scheduleFilters } from '../data/schedule-data';
 
 const SchedulePage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');

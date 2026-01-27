@@ -60,7 +60,7 @@ const ExtendedProgramView: React.FC<ExtendedProgramViewProps> = ({ program, page
             </p>
             
             <div className="space-y-12">
-              {pageData.platforms.map((platform: any, index: number) => (
+              {pageData.platforms.map((platform: any) => (
                 <div
                   key={platform.id}
                   className={`border-l-4 border-${platform.borderColor} pl-6 py-2`}
