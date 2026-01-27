@@ -5,6 +5,7 @@ import Hero from '../components/sections/Hero';
 import Benefits from '../components/sections/Benefits';
 import Programs from '../components/sections/Programs';
 import Audience from '../components/sections/Audience';
+import UpcomingEvents from '../components/sections/UpcomingEvents';
 import MapSection from '../components/sections/MapSection';
 import Testimonials from '../components/sections/Testimonials';
 import CTASection from '../components/sections/CTASection';
@@ -16,6 +17,7 @@ const HomePage: React.FC = () => {
       <Benefits />
       <Programs />
       <Audience />
+      <UpcomingEvents />
       <MapSection />
       <Testimonials />
       <CTASection />
